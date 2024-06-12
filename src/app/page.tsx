@@ -1,17 +1,52 @@
-import Image from "next/image";
+"use client";
 import styles from "./page.module.css";
-import { Header } from "@/widgets/header";
 import { Main } from "@/widgets/main";
+import { useAnimate, useInView } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
+  const [scope, animate] = useAnimate();
+  const isInView = useInView(scope);
+
+  useEffect(() => {
+    if (isInView) {
+      const aniMated = async () => {
+        await animate(
+          "#name_title",
+          { opacity: 1, marginLeft: 0 },
+          { duration: 1.5, ease: "easeInOut" }
+        );
+        await animate("#job_name", { opacity: 1, marginRight: 0 });
+      };
+      aniMated();
+    }
+  }, [isInView, animate]);
+
   return (
     <>
-      <Header />
-      <div className={styles.main}>
-        <h1 style={{ fontSize: 96, fontWeight: "regular" }}>
+      <div ref={scope} className={styles.main}>
+        <h1
+          id="name_title"
+          style={{
+            fontSize: 96,
+            fontWeight: "regular",
+            opacity: 0,
+            marginLeft: -300,
+          }}
+        >
           Mahmudov Jonibek
         </h1>
-        <h3 style={{ fontSize: 32, fontWeight: 500 }}>Frontend developer</h3>
+        <h3
+          id="job_name"
+          style={{
+            fontSize: 32,
+            fontWeight: 500,
+            opacity: 0,
+            marginRight: -350,
+          }}
+        >
+          Frontend developer
+        </h3>
       </div>
       <Main />
     </>

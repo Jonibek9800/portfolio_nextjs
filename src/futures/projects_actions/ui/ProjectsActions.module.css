@@ -1,0 +1,16 @@
+.projects_wraper {
+  width: 330px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+.btn {
+  padding: 10px 62px;
+  white-space: nowrap;
+  font-size: 16px;
+  cursor: pointer;
+}
