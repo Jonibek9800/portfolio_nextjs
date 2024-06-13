@@ -9,7 +9,9 @@ export default function Header() {
   const path = usePathname();
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>Logo</div>
+      <div className={styles.logo}>
+        <img className={styles.logo_img} src="/logo_portfolio.jpg" alt="" width={70} />
+      </div>
       <div className={styles.nav_bar}>
         {links.map((link) => {
           return (
