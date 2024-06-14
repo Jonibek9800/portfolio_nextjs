@@ -1,9 +1,10 @@
 .projects_wraper {
-  width: 330px;
+  max-width: 450px;
   display: flex;
-  justify-content: space-between;
   gap: 30px;
   margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 80px;
   margin-bottom: 100px;
 }

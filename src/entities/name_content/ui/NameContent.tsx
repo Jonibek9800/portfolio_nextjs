@@ -1,31 +1,46 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./NameContent.module.css";
-import { useAnimate, useInView } from "framer-motion";
+import { strName } from "../model";
 
 export default function NameContent() {
-  const [scope, animate] = useAnimate();
-  const isInView = useInView(scope);
+  const [strIndex, setStrIndex] = useState(0);
+  const [myName, setMyName] = useState("");
+  const [myProf, setMyProf] = useState("");
 
   useEffect(() => {
-    if (isInView) {
-      const aniMated = async () => {
-        await animate(
-          "#name_title",
-          { opacity: 1, marginLeft: 0 },
-          { duration: 1.5, ease: "easeInOut" }
-        );
-        await animate("#job_name", { opacity: 1, marginRight: 0 });
-      };
-      aniMated();
-    }
-  }, [isInView, animate]);
+    const timeOne = setTimeout(() => {
+      const timer = setTimeout(() => {
+        if (strIndex <= 15) {
+          setMyName((prev) => (prev += strName[strIndex]));
+        } else {
+          setMyProf((prev) => (prev += strName[strIndex]));
+        }
+        setStrIndex((prev) => (prev += 1));
+      }, 100);
+
+      if (strIndex === strName.length) {
+        clearTimeout(timer);
+      }
+    }, 0);
+    return () => clearTimeout(timeOne);
+  }, [strIndex]);
   return (
-    <div ref={scope} className={styles.name_content}>
-      <h1 id="name_title" className={styles.name}>
-        Jonibek Mahmudov
+    <div className={styles.name_content}>
+      <h1
+        className={
+          strIndex >= 15 ? styles.name : `${styles.activeName} ${styles.name}`
+        }
+      >
+        {myName}
       </h1>
-      <h4 id="job_name" className={`${styles.profession}`}>
-        Front end developer
+      <h4
+        className={
+          strIndex <= 15
+            ? styles.profession
+            : `${styles.profession} ${styles.activeName}`
+        }
+      >
+        {myProf}
       </h4>
     </div>
   );

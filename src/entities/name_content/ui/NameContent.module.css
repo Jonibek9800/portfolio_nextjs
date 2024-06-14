@@ -5,21 +5,28 @@
 }
 
 .name {
-  font-size: 84px;
+  font-size: 54px;
   font-weight: 500;
   color: chocolate;
-  opacity: 0;
-  margin-left: 250px;
   text-transform: uppercase;
-  /* margin-left: -300; */
+}
+
+.activeName::after {
+  content: "|";
+  padding: 0 1px;
+  animation: cursorLine 1s infinite;
+}
+
+@keyframes cursorLine {
+  50% {
+    color: #000;
+  }
 }
 
 .profession {
-  opacity: 0;
-  margin-right: 250px;
   font-size: 32px;
-  font-weight: 500;
-  position: relative;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
 /* .animate_name::before {

@@ -1,52 +1,50 @@
 import { ProjectCard } from "@/entities/project_card";
 import styles from "./Main.module.css";
 import { ProjectsActions } from "@/futures/projects_actions";
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimate, useInView } from "framer-motion";
+import { useEffect } from "react";
 
 const textAnimate = {
   visible: (custom: number) => ({
     x: 0,
-    y: 0,
     opacity: 1,
     transition: { delay: custom * 0.5 },
   }),
   hidden: {
-    y: -150,
     x: 150,
     opacity: 0,
   },
 };
 
 export default function Main() {
-  const ref = useRef();
+  const [scope, animate] = useAnimate();
+  const inView = useInView(scope);
+
+  useEffect(() => {
+    if (inView) {
+      animate("#about_title", { opacity: 1, marginLeft: 0 }, { delay: 0.5 });
+      animate(
+        "#aboute_content",
+        { opacity: 1, marginLeft: 0 },
+        { delay: 0.5 }
+      );
+    }
+  }, [inView, animate]);
+
   return (
-    <motion.main className={styles.main}>
+    <main className={styles.main}>
       <div className={styles.main_wraper}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ amount: 0.1 }}
-          className={styles.about_me}
-        >
-          <motion.h4
-            custom={1}
-            variants={textAnimate}
-            className={styles.about_me_title}
-          >
+        <div ref={scope} id="about" className={styles.about_me}>
+          <h4 id="about_title" className={styles.about_me_title}>
             About me
-          </motion.h4>
-          <motion.span
-            custom={2}
-            variants={textAnimate}
-            className={styles.about_me_content}
-          >
+          </h4>
+          <span id="aboute_content" className={styles.about_me_content}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque esse
             cum optio repudiandae deserunt ex facere nobis delectus autem
             maiores veritatis velit, vitae sint iure nemo ducimus, omnis ut
             iusto.
-          </motion.span>
-        </motion.div>
+          </span>
+        </div>
         <motion.div
           className={styles.my_skils}
           initial="hidden"
@@ -196,6 +194,6 @@ export default function Main() {
           <ProjectsActions />
         </div>
       </div>
-    </motion.main>
+    </main>
   );
 }
