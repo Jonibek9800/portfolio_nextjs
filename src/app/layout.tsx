@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, League_Spartan } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/widgets/header";
+import { Footer } from "@/widgets/footer";
 
 const spartan = League_Spartan({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={spartan.className}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
