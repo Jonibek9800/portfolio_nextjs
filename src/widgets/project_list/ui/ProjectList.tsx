@@ -9,6 +9,7 @@ export default function ProjectList() {
       <ProjectCard image="/" title="" description="" />
       <ProjectCard image="/" title="" description="" />
       <ProjectCard image="/" title="" description="" />
+      <ProjectCard image="/" title="" description="" />
     </div>
   );
 }

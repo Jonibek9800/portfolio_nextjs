@@ -26,6 +26,12 @@ export default function NameContent() {
   }, [strIndex]);
   return (
     <div className={styles.name_content}>
+      <img
+        className={styles.bacground_icon}
+        src="/developer_image.png"
+        alt=""
+      />
+  
       <h1
         className={
           strIndex >= 15 ? styles.name : `${styles.activeName} ${styles.name}`

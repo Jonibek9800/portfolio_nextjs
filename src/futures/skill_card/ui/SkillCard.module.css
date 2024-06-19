@@ -1,0 +1,9 @@
+.my_skill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0px 15px;
+  width: 150px;
+  text-decoration: none;
+  border: 1px solid grey;
+}

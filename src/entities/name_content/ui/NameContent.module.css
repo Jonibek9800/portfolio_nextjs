@@ -1,14 +1,21 @@
 .name_content {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
+  align-items: center;
+  /* justify-content: center; */
 }
 
 .name {
   font-size: 54px;
   font-weight: 500;
-  color: chocolate;
+  color: #abafd0;
   text-transform: uppercase;
+  z-index: 10;
+  margin-top: 250px;
 }
 
 .activeName::after {
@@ -27,26 +34,22 @@
   font-size: 32px;
   font-weight: 300;
   text-transform: uppercase;
+  z-index: 10;
 }
 
-/* .animate_name::before {
+.bacground_icon {
+  width: 250px;
   position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-left: 2px solid darkgrey;
-  background-color: #000;
-  animation: write 3s steps(18) infinite;
+  top: 20px;
+  animation: flight 2s infinite;
+  z-index: 15;
 }
 
-@keyframes write {
-  40%,
-  60% {
-    left: 100%;
+@keyframes flight {
+  50% {
+    top: 10px;
   }
   100% {
-    left: 0%;
+    top: 20px;
   }
-} */
+}

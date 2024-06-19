@@ -3,6 +3,8 @@ import styles from "./Main.module.css";
 import { ProjectsActions } from "@/futures/projects_actions";
 import { motion, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
+import { skills } from "../model";
+import { SkillCard } from "@/futures/skill_card";
 
 const textAnimate = {
   visible: (custom: number) => ({
@@ -17,24 +19,29 @@ const textAnimate = {
 };
 
 export default function Main() {
-  const [scope, animate] = useAnimate();
-  const inView = useInView(scope);
+  const [ref, animateOne] = useAnimate();
+  const [ref2, animateTwo] = useAnimate();
+  const inView = useInView(ref);
+  const isSkillsView = useInView(ref2);
 
   useEffect(() => {
     if (inView) {
-      animate("#about_title", { opacity: 1, marginLeft: 0 }, { delay: 0.5 });
-      animate(
+      animateOne("#about_title", { opacity: 1, marginLeft: 0 }, { delay: 0.5 });
+      animateOne(
         "#aboute_content",
         { opacity: 1, marginLeft: 0 },
         { delay: 0.5 }
       );
     }
-  }, [inView, animate]);
+    if (isSkillsView) {
+      animateTwo("#skills", { opacity: 1 }, { delay: 1 });
+    }
+  }, [inView, animateOne]);
 
   return (
     <main className={styles.main}>
-      <div className={styles.main_wraper}>
-        <div ref={scope} id="about" className={styles.about_me}>
+      <div ref={ref2} className={styles.main_wraper}>
+        <div ref={ref} id="about" className={styles.about_me}>
           <h4 id="about_title" className={styles.about_me_title}>
             About me
           </h4>
@@ -58,119 +65,18 @@ export default function Main() {
           >
             My Skills
           </motion.h4>
-          <div className={styles.my_skills_wrapper}>
-            <motion.div
-              custom={2}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/html.png" alt="" width={24} /> Html
-            </motion.div>
-            <motion.div
-              custom={2.1}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/css.png" alt="" width={24} /> Css
-            </motion.div>
-            <motion.div
-              custom={2.2}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/javascript.png" alt="" width={24} /> JavaScript
-            </motion.div>
-            <motion.div
-              custom={2.3}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/scss.png" alt="" width={24} /> Scss
-            </motion.div>
-            <motion.div
-              custom={2.4}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/bootstrap.png" alt="" width={24} /> Bootstrap
-            </motion.div>
-            <motion.div
-              custom={2.5}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/git.png" alt="" width={24} /> Git
-            </motion.div>
-            <motion.div
-              custom={2.6}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/react.png" alt="" width={24} /> React Js
-            </motion.div>
-            <motion.div
-              custom={2.7}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/redux.png" alt="" width={24} /> Redux
-            </motion.div>
-            <motion.div
-              custom={2.8}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/redux.png" alt="" width={24} /> Redux Toolkit
-            </motion.div>
-            <motion.div
-              custom={2.9}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/zustand.png" alt="" width={24} /> Zustand
-            </motion.div>
-            <motion.div
-              custom={3}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/nextjs.png" alt="" width={24} /> Next Js
-            </motion.div>
-            <motion.div
-              custom={3.1}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/materialui.png" alt="" width={24} /> Material Ui
-            </motion.div>
-            <motion.div
-              custom={3.2}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/typescript.png" alt="" width={24} /> Type Script
-            </motion.div>
-            <motion.div
-              custom={3.3}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/npm.png" alt="" width={24} /> NPM
-            </motion.div>
-            <motion.div
-              custom={3.4}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/figma.png" alt="" width={24} /> Figma
-            </motion.div>
-            <motion.div
-              custom={3.5}
-              variants={textAnimate}
-              className={styles.my_content_skill}
-            >
-              <img src="/vscode.png" alt="" width={24} /> VScode
-            </motion.div>
+          <div id="skills" className={styles.my_skills_wrapper}>
+            {skills.map((skill) => {
+              return (
+                <SkillCard
+                  key={skill.id}
+                  classes=""
+                  title={skill.title}
+                  href={skill.link}
+                  sourse={skill.sourse}
+                />
+              );
+            })}
           </div>
         </motion.div>
         <div className={styles.my_projects}>

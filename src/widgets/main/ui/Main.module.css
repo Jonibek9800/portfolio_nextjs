@@ -25,13 +25,6 @@
   margin-left: 250px;
 }
 
-.my_content_skill {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0px 15px;
-  width: 150px;
-}
 .my_skils {
   max-width: 560px;
   margin: auto;
@@ -43,6 +36,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px 20px;
+  opacity: 0;
 }
 
 .my_skills_title {
