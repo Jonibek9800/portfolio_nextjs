@@ -1,0 +1,52 @@
+.contact_header {
+  display: flex;
+  flex-direction: column;
+  height: 87vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.contact_header_title {
+    font-size: 96px;
+    font-weight: 400;
+}
+
+.contact_header_content {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.custom_input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+/* .custom_input:: {
+  border: none;
+} */
+
+.contact_form_name_wrap {
+  display: flex;
+  gap: 100px;
+}
+
+.contact_form {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 100px 10px;
+}
+
+.contact_form_btn {
+  width: 20%;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: auto;
+}

@@ -36,7 +36,7 @@ export default function Main() {
     if (isSkillsView) {
       animateTwo("#skills", { opacity: 1 }, { delay: 1 });
     }
-  }, [inView, animateOne]);
+  }, [inView, isSkillsView, animateOne, animateTwo]);
 
   return (
     <main className={styles.main}>

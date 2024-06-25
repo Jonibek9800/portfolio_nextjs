@@ -1,0 +1,20 @@
+.projects_header {
+  height: 87vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.projects_header h1 {
+  font-size: 96px;
+  font-weight: 400;
+}
+
+.projects_header span {
+  font-size: 32px;
+  font-weight: 400;
+}
